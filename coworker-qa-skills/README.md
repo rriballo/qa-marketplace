@@ -34,7 +34,9 @@ sections. A journey with email includes Audience (when referenced),
 Journey/Campaign, Email Delivery, and applicable Proof/Preview/Personalization.
 Email plus SMS includes both delivery sections. A journey without an audience
 omits Audience with a recorded reason. Delivery-only runs omit unrelated
-sections. The report always includes an Applicability and Coverage table.
+sections. Applicability is tracked in the QA evidence data and does not alter
+the Confluence template structure. The duplicated page ends with Content
+Screenshot and Journey/Campaign Configuration Screenshot sections.
 
 ## Outcome policy
 

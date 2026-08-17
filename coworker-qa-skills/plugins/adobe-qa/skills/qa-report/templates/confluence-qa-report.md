@@ -20,12 +20,6 @@
 |---:|---:|---:|---:|---|
 | {{pass_count}} | {{fail_count}} | {{blocked_count}} | {{na_count}} | {{final_decision}} |
 
-## Applicability and Coverage
-
-| Section | Included | Reason | Source / evidence |
-|---|---|---|---|
-| {{section}} | {{included}} | {{applicability_reason}} | {{applicability_evidence}} |
-
 ## Findings and Alerts
 
 | Severity | Area | Check | Expected | Observed | Comment | Remediation | Evidence |
@@ -58,6 +52,10 @@
 
 {{evidence_index}}
 
-## Journey/Campaign Snapshot
+## Content Screenshot
+
+{{content_screenshot}}
+
+## Journey/Campaign Configuration Screenshot
 
 {{graph_screenshot_or_snapshot}}

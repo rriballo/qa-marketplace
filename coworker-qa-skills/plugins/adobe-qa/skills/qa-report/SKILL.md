@@ -8,17 +8,45 @@ description: Create an evidence-backed Confluence QA report from Adobe QA result
 Use the Atlassian MCP only for the report and its evidence. Duplicate the
 runtime `template_page`, or the governed default
 `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`,
-in the approved existing space. Preserve its existing structure where the API
-permits it, then populate the overview, applicability/coverage table, decision
-counts, selected QA sections, findings, remediation, limitations, technical
-details, and evidence index.
+in the approved existing space. The duplicated page is the report: do not
+recreate it from Markdown and do not replace it with the local fallback
+template.
+
+## Template preservation is mandatory
+
+- Keep the exact template structure, headings, tables, order, formatting, and
+  existing instructional text.
+- Do not add, remove, rename, reorder, or merge template sections.
+- Populate only existing template fields, table cells, and designated content
+  placeholders. If a selected QA result has no matching region, place it in the
+  existing Findings, Technical Details, or Evidence region; do not add a new QA
+  heading.
+- Do not insert an Applicability and Coverage section into the Confluence page.
+  Keep the applicability record in the QA evidence/result data and summarize it
+  only within existing template regions.
+- Do not convert the page to a new Markdown layout or overwrite the template
+  body wholesale.
+
+After all existing template content, append exactly these evidence sections, in
+this order:
+
+1. `Content Screenshot`
+2. `Journey/Campaign Configuration Screenshot`
+
+Attach or embed the actual screenshots when the connected Adobe/Atlassian tools
+support them, using the configured evidence capture and Confluence attachment
+operations. The content screenshot must show the rendered message/content. The
+journey/campaign screenshot must show the orchestration/configuration view. If
+either screenshot cannot be obtained, keep the required heading and write
+`BLOCKED` with the attempted capability and evidence scope. Never claim a
+placeholder is a screenshot.
 
 Preserve `PASS`, `FAIL`, `BLOCKED`, and `NA` exactly. Include the source citation
 for every finding. Include a limitations section whenever the Adobe Gateway or
 custom AJO MCP cannot expose a requested check. Do not silently omit blocked
 checks. Do not update Jira fields, comments, or status.
 
-Render only sections marked included by the orchestrator applicability record.
-Always render the applicability/coverage table, including explicit omitted
-sections and reasons. A selected section must retain all of its `BLOCKED`
-checks; omission is allowed only for a genuinely non-applicable section.
+Use the orchestrator applicability record to decide which existing template
+regions to populate. Do not create new sections for included areas. A selected
+area must retain all of its `BLOCKED` checks; an omitted area must be recorded
+with its reason in the existing Findings or Technical Details region.

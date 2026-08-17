@@ -16,9 +16,10 @@
 8. Confirm that preview validation never sends live email or SMS.
 9. Confirm the Jira write policy remains disabled. This package creates the
    Confluence report only and does not update or transition Jira.
-10. Verify a test run produces an Applicability and Coverage table and omits
-    only genuinely non-applicable sections; unsupported checks inside included
-    sections must remain `BLOCKED`.
+10. Verify a test run preserves the duplicated template structure exactly,
+    appends Content Screenshot and Journey/Campaign Configuration Screenshot at
+    the end, and omits only genuinely non-applicable content; unsupported checks
+    inside included sections must remain `BLOCKED`.
 
 ## First test invocation
 

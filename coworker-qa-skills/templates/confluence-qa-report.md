@@ -26,12 +26,6 @@
 
 **Final decision:** `{{final_decision}}`
 
-## Applicability and Coverage
-
-| Section | Included | Reason | Source / evidence |
-|---|---|---|---|
-| {{section}} | {{included}} | {{applicability_reason}} | {{applicability_evidence}} |
-
 ## Findings and Alerts
 
 | Severity | Area | Check | Expected | Observed | Comment | Remediation | Evidence |
@@ -66,6 +60,10 @@
 
 {{evidence_index}}
 
-## Full Journey/Campaign Evidence
+## Content Screenshot
+
+{{content_screenshot}}
+
+## Journey/Campaign Configuration Screenshot
 
 {{graph_screenshot_or_snapshot}}

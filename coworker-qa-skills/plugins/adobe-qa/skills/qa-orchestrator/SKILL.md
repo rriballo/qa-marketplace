@@ -38,8 +38,14 @@ or delete Adobe resources.
 10. Duplicate and populate the existing Confluence template through Atlassian
     MCP. Use `template_page` when supplied, otherwise use
     `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`.
-    Preserve its existing structure where the API permits it, insert the
-    applicability table, and render only selected QA sections.
+     Treat the duplicated page as immutable structure: do not recreate it from
+     Markdown, add/remove/reorder headings, change tables, or insert an
+     applicability section. Populate only existing fields/regions. Use the
+     applicability record to decide which existing regions receive results, and
+     put omitted-section reasons in an existing Findings or Technical Details
+     region. At the very end append `Content Screenshot`, followed by
+     `Journey/Campaign Configuration Screenshot`; attach/embed the actual images
+     or record `BLOCKED` if the runtime cannot capture them.
    Do not update or transition Jira.
 
 ## Required input

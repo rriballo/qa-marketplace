@@ -14,6 +14,8 @@ report sections. The `qa_type` input is not sufficient evidence of scope.
 | Delivery-only object | Delivery section(s); omit Audience and Journey/Campaign |
 
 Record every candidate section as `included` or `omitted`, with a reason,
-source/evidence, and resolved identifiers. Omit only genuinely non-applicable
-sections. Any unsupported check within an included section is `BLOCKED`, not
+source/evidence, and resolved identifiers. This record is internal QA evidence;
+do not add it as a new Confluence section. Use it to populate matching regions
+already present in the duplicated template. Omit only genuinely non-applicable
+content. Any unsupported check within an included section is `BLOCKED`, not
 `N/A`; reserve `N/A` for a check irrelevant to that configuration.
