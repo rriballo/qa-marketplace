@@ -52,8 +52,8 @@ The hardened `MCP-JJRA` endpoint is scoped to Confluence space
 - `getConfluencePage`: read template/page storage body and version.
 - `duplicateConfluencePage`: duplicate the approved template server-side.
 - `updateConfluencePage`: update an existing page only after the server guard
-  accepts unchanged structure, existing-cell changes, and the two final
-  screenshot sections.
+  accepts unchanged structure, replacement of existing placeholder wrappers by
+  cell text, and the two final screenshot sections.
 - Other scoped read/comment/page tools may be used only for evidence needed by
   the report.
 
@@ -61,6 +61,10 @@ This endpoint does **not** expose Jira tools or Confluence attachment tools.
 If screenshots cannot be uploaded, append the required screenshot headings with
 `BLOCKED` and state the missing capability. Never use a generic full-body update
 or create a replacement page from Markdown.
+
+The MCP does not expand `${file:...}` references inside string parameters. Read
+the storage body through the connected Confluence tool and pass the actual body
+string to `updateConfluencePage`; never pass a filesystem path as `body`.
 
 ## Status rules
 

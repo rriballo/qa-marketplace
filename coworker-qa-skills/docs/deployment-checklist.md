@@ -25,7 +25,8 @@
     screenshots appended last.
 12. Redeploy the hardened `MCP-JJRA` service before testing. The server-side
     template guard must reject a replacement body and allow only existing-cell
-    updates plus the two final screenshot sections.
+    updates, placeholder-wrapper removal, plus the two final screenshot
+    sections. Verify that `${file:...}` is not passed as a literal body value.
 
 ## First test invocation
 

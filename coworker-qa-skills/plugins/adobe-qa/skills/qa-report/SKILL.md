@@ -37,6 +37,10 @@ write as `BLOCKED`.
   only within existing template regions.
 - Do not convert the page to a new Markdown layout or overwrite the template
   body wholesale.
+- Replace only the contents of existing `<ac:placeholder>` cells. The hardened
+  MCP permits removing those placeholder wrappers while preserving the table
+  structure. Do not pass `${file:...}` or a filesystem path as the body; the
+  update argument must contain the actual storage-format string.
 
 The required section order and channel-specific checklist content are defined in
 `shared/template-format.md`, based on the supplied 12-page PDF. The Confluence
