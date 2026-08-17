@@ -41,6 +41,11 @@ write as `BLOCKED`.
   MCP permits removing those placeholder wrappers while preserving the table
   structure. Do not pass `${file:...}` or a filesystem path as the body; the
   update argument must contain the actual storage-format string.
+- Prefer `updateConfluenceTemplateFields` for placeholder population. Send a
+  compact array of exact placeholder/value pairs and let the MCP fetch and
+  update the large storage body server-side. Use `updateConfluencePage` only
+  for an approved final screenshot appendix or another change that cannot be
+  represented as targeted field replacements.
 
 The required section order and channel-specific checklist content are defined in
 `shared/template-format.md`, based on the supplied 12-page PDF. The Confluence

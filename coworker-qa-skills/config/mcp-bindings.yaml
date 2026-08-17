@@ -30,6 +30,7 @@ connections:
       - getConfluenceCapabilities
       - getConfluencePage
       - duplicateConfluencePage
+      - updateConfluenceTemplateFields
       - updateConfluencePage
     unsupported_by_default:
       - Jira issue read/write

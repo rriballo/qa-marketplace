@@ -51,6 +51,10 @@ The hardened `MCP-JJRA` endpoint is scoped to Confluence space
   `arbitrary_template_body_replacement: false`.
 - `getConfluencePage`: read template/page storage body and version.
 - `duplicateConfluencePage`: duplicate the approved template server-side.
+- `updateConfluenceTemplateFields`: preferred QA write; send page ID and
+  placeholder/value replacements only. The server fetches the large body,
+  applies targeted replacements, validates structure, and writes the new
+  version.
 - `updateConfluencePage`: update an existing page only after the server guard
   accepts unchanged structure, replacement of existing placeholder wrappers by
   cell text, and the two final screenshot sections.
@@ -62,9 +66,10 @@ If screenshots cannot be uploaded, append the required screenshot headings with
 `BLOCKED` and state the missing capability. Never use a generic full-body update
 or create a replacement page from Markdown.
 
-The MCP does not expand `${file:...}` references inside string parameters. Read
-the storage body through the connected Confluence tool and pass the actual body
-string to `updateConfluencePage`; never pass a filesystem path as `body`.
+Do not pass a 94 KB body through the client when targeted fields are sufficient.
+The MCP does not expand `${file:...}` references inside string parameters. Use
+`updateConfluenceTemplateFields`; if full-body update is unavoidable, pass the
+actual storage-format string to `updateConfluencePage`, never a filesystem path.
 
 ## Status rules
 
