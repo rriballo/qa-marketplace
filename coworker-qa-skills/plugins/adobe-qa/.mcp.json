@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "adobe-cx": {
+      "type": "http",
+      "url": "${ADOBE_CX_MCP_URL:-https://cx-coworker-gateway.adobe.io/mcp}",
+      "headers": {
+        "Authorization": "Bearer ${ADOBE_IMS_TOKEN}",
+        "x-gw-ims-org-id": "${ADOBE_IMS_ORG_ID}"
+      },
+      "timeout": 30000
+    },
+    "atlassian": {
+      "type": "http",
+      "url": "${ATLASSIAN_MCP_URL:-https://atlassian-public-mcp-ttzmuqtjma-uc.a.run.app/mcp}",
+      "timeout": 30000
+    }
+  }
+}

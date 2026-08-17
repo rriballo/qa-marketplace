@@ -1,0 +1,22 @@
+{
+  "name": "adobe-qa-coworker",
+  "owner": {
+    "name": "WPP AJO Engineering"
+  },
+  "description": "Read-only Adobe CX Coworker QA skills for journeys, campaigns, audiences, and deliveries.",
+  "version": "1.0.0",
+  "plugins": [
+    {
+      "name": "adobe-qa",
+      "displayName": "Adobe Experience QA",
+      "source": "./plugins/adobe-qa",
+      "description": "Audit Adobe Journey Optimizer objects and produce evidence-backed Confluence QA reports.",
+      "version": "1.0.0",
+      "author": {
+        "name": "WPP AJO Engineering"
+      },
+      "category": "productivity",
+      "tags": ["adobe", "journey-optimizer", "qa", "confluence", "mcp"]
+    }
+  ]
+}

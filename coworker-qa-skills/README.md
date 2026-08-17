@@ -1,0 +1,55 @@
+# Adobe CX Coworker QA Skills
+
+Coworker marketplace plugin source for read-only quality assurance of Adobe
+Journey Optimizer journeys, campaigns, audiences, and message deliveries.
+
+## Installation
+
+Add this repository as a Coworker marketplace, then install the `adobe-qa` plugin.
+The plugin layout mirrors the existing `ajo-coworker-marketplace` repository:
+`.claude-plugin` manifests, plugin-scoped `.mcp.json`, and skills under
+`plugins/adobe-qa/skills`.
+
+The original `skills/` directory remains as portable source documentation. The
+installable plugin is under `plugins/adobe-qa`.
+
+## Entry point
+
+Run `qa-orchestrator` with:
+
+- `jira_ticket`: Jira issue key or URL
+- `brief_source`: brief, SRS, taxonomy, or linked requirements
+- `adobe_object`: Journey, Campaign, audience, or delivery URL/identifier
+- `qa_type`: `journey`, `campaign`, or `delivery`
+- `template_page`: optional existing Confluence QA template page override; the
+  default is the configured `QA - MCP Template` page
+
+The orchestrator creates a Confluence report only after all checks have been
+attempted. It does not update or transition Jira.
+
+## Conditional sections
+
+The orchestrator resolves the Adobe object and dependencies before selecting
+sections. A journey with email includes Audience (when referenced),
+Journey/Campaign, Email Delivery, and applicable Proof/Preview/Personalization.
+Email plus SMS includes both delivery sections. A journey without an audience
+omits Audience with a recorded reason. Delivery-only runs omit unrelated
+sections. The report always includes an Applicability and Coverage table.
+
+## Outcome policy
+
+`PASS`, `FAIL`, `BLOCKED`, and `N/A` are distinct states. A report is approved only
+when there are no unresolved blockers, failures, or blocked checks.
+
+## Required connections
+
+- Adobe CX Coworker Gateway or an entitled AJO MCP: capabilities are discovered at
+  runtime and may be read-only or product-limited.
+- Atlassian MCP: Jira and Confluence read/write access for the report only.
+
+## Known limitations
+
+The skill reports unsupported or unavailable operations as `BLOCKED`. It does not
+claim to simulate profile eligibility, prove live delivery, render every message,
+inspect every journey policy reference, or validate Adobe Campaign unless the
+connected MCP advertises those capabilities. It never changes Adobe objects.

@@ -1,0 +1,11 @@
+{
+  "name": "adobe-qa",
+  "displayName": "Adobe Experience QA",
+  "description": "Read-only, evidence-backed QA for Adobe Journey Optimizer and supported campaign assets.",
+  "version": "1.0.0",
+  "author": {
+    "name": "WPP AJO Engineering"
+  },
+  "license": "Apache-2.0",
+  "keywords": ["adobe", "ajo", "qa", "journey", "campaign", "confluence", "mcp"]
+}

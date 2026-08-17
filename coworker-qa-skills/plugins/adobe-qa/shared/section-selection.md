@@ -1,0 +1,27 @@
+# Conditional QA Section Selection
+
+Select sections only after resolving and re-reading the Adobe object and every
+referenced dependency. Do not infer applicability from `qa_type` alone.
+
+| Evidence found | Include |
+|---|---|
+| Journey with an audience or segment reference | Audience, Journey/Campaign |
+| Journey with no audience reference | Journey/Campaign; omit Audience with reason |
+| Email action or email delivery reference | Email Delivery; applicable Proof/Preview/Personalization |
+| SMS action or SMS delivery reference | SMS Delivery; applicable Proof/Preview/Personalization |
+| Campaign with an audience or segment reference | Audience, Journey/Campaign |
+| Campaign with a delivery/channel reference | Delivery section for each channel |
+| Delivery-only object | Delivery section for each channel; omit Audience and Journey/Campaign |
+
+An action is applicable when present in the Adobe object, linked dependency
+metadata, or brief and tied to the object by an identifier. A brief-only
+expectation does not make an absent object applicable; report the mismatch.
+
+Create a record for every candidate section with `section`, `included`,
+`reason`, `source/evidence`, and resolved identifiers. Omitted sections must
+state why they are genuinely non-applicable. Included sections run all relevant
+checks, even when the MCP cannot support them.
+
+Unavailable capabilities are `BLOCKED`, never `N/A`, with the missing tool and
+attempted scope. Reserve `N/A` for a check that is irrelevant to the selected
+configuration.
