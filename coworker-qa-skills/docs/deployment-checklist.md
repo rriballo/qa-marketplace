@@ -20,6 +20,9 @@
     appends Content Screenshot and Journey/Campaign Configuration Screenshot at
     the end, and omits only genuinely non-applicable content; unsupported checks
     inside included sections must remain `BLOCKED`.
+11. Compare the resulting page against `docs/template-format.md`: the original
+    checklist order and table structure must be unchanged, with the two actual
+    screenshots appended last.
 
 ## First test invocation
 

@@ -33,6 +33,7 @@ connections:
       - attach_confluence_evidence
     default_template_page: https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template
     template_override_input: template_page
+    template_format_contract: plugins/adobe-qa/shared/template-format.md
 
 write_policy:
   jira:

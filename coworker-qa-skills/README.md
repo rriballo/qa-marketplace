@@ -37,6 +37,8 @@ omits Audience with a recorded reason. Delivery-only runs omit unrelated
 sections. Applicability is tracked in the QA evidence data and does not alter
 the Confluence template structure. The duplicated page ends with Content
 Screenshot and Journey/Campaign Configuration Screenshot sections.
+The exact checklist order and table rules are defined in
+`plugins/adobe-qa/shared/template-format.md` from the supplied PDF reference.
 
 ## Outcome policy
 

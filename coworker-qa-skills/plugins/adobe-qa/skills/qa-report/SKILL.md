@@ -5,7 +5,8 @@ description: Create an evidence-backed Confluence QA report from Adobe QA result
 
 # Create QA report
 
-Use the Atlassian MCP only for the report and its evidence. Duplicate the
+Use the Atlassian MCP only for the report and its evidence. Read
+`shared/template-format.md` before writing. Duplicate the
 runtime `template_page`, or the governed default
 `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`,
 in the approved existing space. The duplicated page is the report: do not
@@ -26,6 +27,10 @@ template.
   only within existing template regions.
 - Do not convert the page to a new Markdown layout or overwrite the template
   body wholesale.
+
+The required section order and channel-specific checklist content are defined in
+`shared/template-format.md`, based on the supplied 12-page PDF. The Confluence
+template's existing table cells are the only result destinations.
 
 After all existing template content, append exactly these evidence sections, in
 this order:

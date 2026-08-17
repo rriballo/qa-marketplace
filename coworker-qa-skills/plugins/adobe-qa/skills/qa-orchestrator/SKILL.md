@@ -12,7 +12,8 @@ or delete Adobe resources.
    Otherwise use the documented CX Coworker Gateway tool set and its known
    limitations. Use exact tool names and schemas; never invent operations.
 2. Read the Jira ticket, linked brief/SRS, taxonomy, and existing Confluence QA
-   template. Confirm the sandbox and permissions.
+   template. Read `shared/template-format.md` as the required format contract.
+   Confirm the sandbox and permissions.
 3. Resolve the supplied Adobe object and every referenced audience, delivery,
    channel, content, and proof dependency. Re-read each resource before
    reporting detailed fields. Follow pagination exactly for inventories.
