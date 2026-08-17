@@ -23,6 +23,9 @@
 11. Compare the resulting page against `docs/template-format.md`: the original
     checklist order and table structure must be unchanged, with the two actual
     screenshots appended last.
+12. Redeploy the hardened `MCP-JJRA` service before testing. The server-side
+    template guard must reject a replacement body and allow only existing-cell
+    updates plus the two final screenshot sections.
 
 ## First test invocation
 

@@ -13,6 +13,14 @@ in the approved existing space. The duplicated page is the report: do not
 recreate it from Markdown and do not replace it with the local fallback
 template.
 
+Before updating, call the connected Confluence MCP's read-only
+`getConfluenceCapabilities` tool. Require
+`safety.template_preserving_confluence_update: true` and
+`safety.arbitrary_template_body_replacement: false`. If the capability tool is
+unavailable, the safety values are not present, or the server rejects the
+proposed structure, do not retry with a generic full-body update; report the
+write as `BLOCKED`.
+
 ## Template preservation is mandatory
 
 - Keep the exact template structure, headings, tables, order, formatting, and

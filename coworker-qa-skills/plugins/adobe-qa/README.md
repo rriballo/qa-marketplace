@@ -7,5 +7,11 @@ Before use, verify `qa-orchestrator` can call the Adobe capability-discovery too
 and that the required product tools are exposed to the authenticated organization.
 The Gateway only surfaces entitled tools; missing tools are not a reason to guess.
 
+The configured Atlassian MCP must be the hardened `MCP-JJRA` deployment with
+template-preserving Confluence updates. An unguarded `updateConfluencePage`
+operation is not safe for QA reports because it can replace the entire template
+body. If the guarded capability is unavailable, the report write must be marked
+`BLOCKED` rather than using a generic full-body update.
+
 Credentials must come from Coworker managed secrets or environment configuration.
 Never commit IMS tokens, client secrets, or bearer tokens.
