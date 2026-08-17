@@ -6,6 +6,8 @@ report only after the QA run and never modifies or transitions Jira.
 Before use, verify `qa-orchestrator` can call the Adobe capability-discovery tool
 and that the required product tools are exposed to the authenticated organization.
 The Gateway only surfaces entitled tools; missing tools are not a reason to guess.
+The exact baseline and optional custom tool mapping is in
+`shared/mcp-capability-map.md`; skills must mark unsupported checks `BLOCKED`.
 
 The configured Atlassian MCP must be the hardened `MCP-JJRA` deployment with
 template-preserving Confluence updates. An unguarded `updateConfluencePage`

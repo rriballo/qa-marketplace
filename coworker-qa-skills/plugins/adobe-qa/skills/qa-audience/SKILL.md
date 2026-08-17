@@ -5,11 +5,13 @@ description: Audit an Adobe Experience Platform audience used by an Adobe Journe
 
 # Audit audience
 
-Use only read-only Adobe operations. Call capability discovery first when the
-session does not already contain its guidance. Use `search_audiences` and retrieve
-the individual audience if that operation is exposed. Use evaluation/export job
-tools to validate freshness and activation health; do not treat a count estimate
-as proof of membership correctness.
+Read `shared/mcp-capability-map.md` first and use only exposed read-only Adobe
+tools. Use `search_audiences` with its continuation token until the relevant
+audience is resolved. Use `preview_audience_membership` only as a bounded preview,
+never as proof of all production membership. Use
+`inspect_audience_evaluation_jobs` and `inspect_audience_export_jobs` for
+freshness and activation health. If a required tool or field is absent, return
+`BLOCKED` with the exact attempted scope.
 
 Check label/taxonomy, description, definition, schema, attributes, inclusion and
 exclusion logic, consent, blacklist, evaluation state, refresh behavior, identity

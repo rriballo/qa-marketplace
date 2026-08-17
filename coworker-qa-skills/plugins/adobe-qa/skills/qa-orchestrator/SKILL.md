@@ -8,10 +8,15 @@ description: Run an evidence-backed, read-only QA of an Adobe Journey Optimizer 
 Remain read-only against Adobe. Do not repair, publish, approve, activate, send,
 or delete Adobe resources.
 
-1. Call `ajo_get_capabilities` when the connected custom AJO server exposes it.
-   Otherwise use the documented CX Coworker Gateway tool set and its known
-   limitations. Use exact tool names and schemas; never invent operations.
-2. Read the Jira ticket, linked brief/SRS, taxonomy, and existing Confluence QA
+1. Read `shared/mcp-capability-map.md` and discover the tools exposed by the
+   connected Adobe and Atlassian MCPs. If a custom Adobe server exposes
+   `ajo_get_capabilities`, call it; otherwise use the documented baseline. On
+   Atlassian, call `getConfluenceCapabilities` before any report write. Use exact
+   tool names and schemas; never invent operations.
+2. Read the Jira ticket only if a separate Jira-capable MCP is connected. The
+   default hardened Atlassian MCP is Confluence-only, so use supplied
+   `jira_ticket`/brief context and mark Jira retrieval `BLOCKED` when it cannot
+   be read. Read the linked brief/SRS, taxonomy, and existing Confluence QA
    template. Read `shared/template-format.md` as the required format contract.
    Confirm the sandbox and permissions.
 3. Resolve the supplied Adobe object and every referenced audience, delivery,
@@ -22,10 +27,12 @@ or delete Adobe resources.
    Include one delivery section per channel found and include
    Proof/Preview/Personalization when an included delivery or brief requires it.
    Omit only genuinely absent sections and record the reason.
-5. Run audience checks with `search_audiences` and related RT-CDP tools when
-   available. Run campaign checks with `ajo_campaign_list` and `ajo_campaign_get`.
-   Run journey-graph and message-content checks only when a custom connected MCP
-   explicitly exposes those capabilities.
+5. Run audience checks with `search_audiences`,
+   `preview_audience_membership`, `inspect_audience_evaluation_jobs`, and
+   `inspect_audience_export_jobs` when exposed. Run campaign checks with
+   `ajo_campaign_list` and `ajo_campaign_get`; use channel configuration tools
+   for channel metadata. Run journey-graph and message-content checks only when
+   the custom tools in the capability map are explicitly exposed.
 6. For each unavailable capability, create a `BLOCKED` result with the missing
    capability and the exact attempted scope. Never turn an unavailable check into
    `PASS` or `N/A`.
@@ -47,7 +54,8 @@ or delete Adobe resources.
      region. At the very end append `Content Screenshot`, followed by
      `Journey/Campaign Configuration Screenshot`; attach/embed the actual images
      or record `BLOCKED` if the runtime cannot capture them.
-   Do not update or transition Jira.
+    Do not update or transition Jira. Do not call attachment tools unless a
+    runtime capability discovery explicitly exposes one.
 
 ## Required input
 

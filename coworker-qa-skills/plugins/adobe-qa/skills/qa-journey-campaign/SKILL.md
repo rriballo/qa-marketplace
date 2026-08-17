@@ -5,12 +5,14 @@ description: Audit the properties, graph, activities, waits, events, conditions,
 
 # Audit journey or campaign
 
-Call capability discovery first. The documented CX Coworker Gateway baseline
-supports campaign metadata, targeting, schedule, channel, and content metadata,
-but not a complete Journey graph. Confirm whether the connected server supports
-the requested object type and graph depth; Adobe Gateway availability is
-entitlement and permission dependent. Re-read the object and each referenced
-resource before making detailed claims.
+Read `shared/mcp-capability-map.md` and discover capabilities first. The
+documented CX Coworker Gateway baseline supports campaign metadata, targeting,
+schedule, channel configuration, and available content metadata, but not a
+complete Journey graph. Use `ajo_campaign_list` to resolve campaigns and
+`ajo_campaign_get` to re-read each campaign. Confirm whether a custom server
+exposes `read_journey_graph` and the requested graph depth; otherwise mark graph,
+activity, script, and logic checks `BLOCKED`. Re-read the object and each
+referenced resource before making detailed claims.
 
 Check label, description, targeting, schedule, channel, and available content
 metadata first. Check entry, re-entry, timezone, profile timezone, dates,

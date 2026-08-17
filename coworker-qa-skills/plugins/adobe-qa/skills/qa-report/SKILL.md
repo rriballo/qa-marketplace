@@ -6,7 +6,9 @@ description: Create an evidence-backed Confluence QA report from Adobe QA result
 # Create QA report
 
 Use the Atlassian MCP only for the report and its evidence. Read
-`shared/template-format.md` before writing. Duplicate the
+`shared/mcp-capability-map.md` and `shared/template-format.md` before writing.
+The default hardened Atlassian MCP is Confluence-only: it does not read Jira
+and does not upload attachments. Duplicate the
 runtime `template_page`, or the governed default
 `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`,
 in the approved existing space. The duplicated page is the report: do not
@@ -46,13 +48,12 @@ this order:
 1. `Content Screenshot`
 2. `Journey/Campaign Configuration Screenshot`
 
-Attach or embed the actual screenshots when the connected Adobe/Atlassian tools
-support them, using the configured evidence capture and Confluence attachment
-operations. The content screenshot must show the rendered message/content. The
-journey/campaign screenshot must show the orchestration/configuration view. If
-either screenshot cannot be obtained, keep the required heading and write
-`BLOCKED` with the attempted capability and evidence scope. Never claim a
-placeholder is a screenshot.
+Embed or attach the actual screenshots only when `capture_evidence` and an
+explicit attachment-capable Atlassian tool are both exposed. The content
+screenshot must show the rendered message/content. The journey/campaign
+screenshot must show the orchestration/configuration view. With the baseline
+MCP, keep both required headings and write `BLOCKED`, naming the missing tool
+and evidence scope. Never claim a placeholder is a screenshot.
 
 Preserve `PASS`, `FAIL`, `BLOCKED`, and `NA` exactly. Include the source citation
 for every finding. Include a limitations section whenever the Adobe Gateway or

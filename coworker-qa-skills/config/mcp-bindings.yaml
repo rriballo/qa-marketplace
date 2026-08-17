@@ -12,6 +12,7 @@ connections:
       - ajo_channel_configuration_list
       - ajo_channel_configuration_get
       - search_audiences
+      - preview_audience_membership
       - inspect_audience_evaluation_jobs
       - inspect_audience_export_jobs
       - search_identity_namespaces
@@ -26,16 +27,19 @@ connections:
     provider: atlassian
     endpoint: https://atlassian-public-mcp-ttzmuqtjma-uc.a.run.app/mcp
     required_capabilities:
-      - read_jira_issue
-      - read_confluence_page
-      - duplicate_confluence_page
-      - update_confluence_page
-      - attach_confluence_evidence
+      - getConfluenceCapabilities
+      - getConfluencePage
+      - duplicateConfluencePage
+      - updateConfluencePage
+    unsupported_by_default:
+      - Jira issue read/write
+      - Confluence attachment upload
     required_safety:
       - template_preserving_confluence_update
     default_template_page: https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template
     template_override_input: template_page
     template_format_contract: plugins/adobe-qa/shared/template-format.md
+    capability_contract: plugins/adobe-qa/shared/mcp-capability-map.md
 
 write_policy:
   jira:
