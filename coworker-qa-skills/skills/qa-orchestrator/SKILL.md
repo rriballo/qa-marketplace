@@ -6,19 +6,21 @@ taxonomy. Produce an auditable Confluence report from the existing template.
 
 ## Inputs
 
-Require `jira_ticket`, `brief_source`, `adobe_object`, and `qa_type`. Ask for
-`template_page` only when the caller wants to override the governed default.
+Require only an identifiable `adobe_object`: a resolvable ID/URL or supplied
+journey/campaign payload. Jira, brief, taxonomy, `qa_type`, and `template_page`
+are optional. Missing optional evidence makes dependent rows `BLOCKED`.
 
 ## Procedure
 
-1. Read the Jira issue and linked brief/SRS. Extract market, country, language,
+1. Read Jira and the linked brief/SRS when supplied and accessible. Extract market, country, language,
    channel, taxonomy, dates, timezone, audience, content, identity, entry rules,
    waits, conditions, splits, hygiene, and approval requirements.
 2. Resolve the Adobe object and related audience, delivery/message, templates,
    scripts, and linked assets. Record inaccessible relationships as `BLOCKED`.
 3. Read `docs/section-selection.md` and create an applicability record from the
    resolved object evidence before running checks. Include one delivery section
-   per channel and omit only genuinely absent sections with a recorded reason.
+   per channel. In the fixed template, populate rows for genuinely absent
+   dependencies as `NA` with a recorded reason instead of leaving them blank.
 4. Run `qa-audience` when an audience is used or created.
 5. Run `qa-delivery` for every selected message/delivery.
 6. Run `qa-journey-campaign` for an included journey or campaign section.
@@ -27,10 +29,12 @@ Require `jira_ticket`, `brief_source`, `adobe_object`, and `qa_type`. Ask for
    communications.
 8. Deduplicate findings by check ID, calculate the final decision, and retain all
    evidence locators.
-9. Duplicate `template_page`, defaulting to `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`,
-   in the existing Confluence space. Preserve its structure, add the
-   applicability/coverage table, and render only selected sections.
-10. Add a concise summary and Confluence link to the report only if the user
+9. Preflight `template_page`, defaulting to `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`,
+   then create the report atomically with `createConfluenceQaReport`. Preserve
+   its structure, fill every QA1 row, and never change QA2.
+10. Re-read the source and report. Verify overview values, all QA1 comments,
+    completed QA1 equals PASS count, and QA2 is unchanged.
+11. Add a concise summary and Confluence link to the report only if the user
    explicitly requests Jira commentary. Do not modify Jira status or fields.
 
 ## Hard stops

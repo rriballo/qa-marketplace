@@ -4,6 +4,10 @@ Inspect the complete orchestration graph and compare it with the extracted
 requirements. This skill applies to AJO Journeys and Adobe Campaign workflows or
 campaigns; use `area: journey` or `area: campaign` accordingly.
 
+A supplied journey/campaign payload is valid evidence. Missing brief values block
+only comparisons that require them. Apply the deterministic status and reporting
+rules in `plugins/adobe-qa/shared/qa-execution-contract.md`.
+
 ## Properties
 
 - Label and taxonomy

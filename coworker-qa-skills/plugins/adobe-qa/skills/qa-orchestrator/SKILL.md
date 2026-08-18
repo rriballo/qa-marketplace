@@ -8,12 +8,17 @@ description: Run an evidence-backed, read-only QA of an Adobe Journey Optimizer 
 Remain read-only against Adobe. Do not repair, publish, approve, activate, send,
 or delete Adobe resources.
 
+For a full execution request, use `qa-execute` and follow
+`shared/qa-execution-contract.md`. This orchestrator coordinates the domain
+skills; it must not weaken that deterministic status or verification contract.
+
 1. Read `shared/mcp-capability-map.md` and discover the tools exposed by the
    connected Adobe and Atlassian MCPs. If a custom Adobe server exposes
    `ajo_get_capabilities`, call it; otherwise use the documented baseline. On
    Atlassian, call `getConfluenceCapabilities` before any report write. Use exact
    tool names and schemas; never invent operations.
-2. Read the Jira ticket only if a separate Jira-capable MCP is connected. The
+2. Read the Jira ticket only if one was supplied and a separate Jira-capable MCP
+   is connected. The
    default hardened Atlassian MCP is Confluence-only, so use supplied
    `jira_ticket`/brief context and mark Jira retrieval `BLOCKED` when it cannot
    be read. Read the linked brief/SRS, taxonomy, and existing Confluence QA
@@ -55,12 +60,23 @@ or delete Adobe resources.
      `Journey/Campaign Configuration Screenshot`; attach/embed the actual images
      or record `BLOCKED` if the runtime cannot capture them.
     Do not update or transition Jira. Do not call attachment tools unless a
-    runtime capability discovery explicitly exposes one.
+     runtime capability discovery explicitly exposes one.
+11. The report is QA1-only. Populate Journey Overview, Market Overview, Audience
+    Overview, every applicable Delivery QA row, Audience QA row, and Journey QA
+    row. Use `inspectConfluenceQaTemplate`, then the atomic
+    `createConfluenceQaReport` operation. Re-read the created page and verify
+    overview values plus each QA1 checkbox/comment; QA2 must remain unchanged.
+12. Do not omit an applicable QA row because Adobe cannot expose its evidence.
+    Send it as `BLOCKED` with the missing capability in its adjacent QA1 comment.
+    Use `NA` only when the resolved object proves the row is genuinely not
+    applicable, such as no wait activity or no personalization.
 
-## Required input
+## Input
 
-Ask for `jira_ticket`, `brief_source`, `adobe_object`, and `qa_type` if any are
-missing. `template_page` is optional because a governed default exists.
+Require only an identifiable `adobe_object`: an ID/URL resolvable through an
+exposed tool or a supplied journey/campaign payload. `jira_ticket`,
+`brief_source`, `qa_type`, taxonomy, and `template_page` are optional. Do not stop
+when optional context is missing; mark only dependent checks `BLOCKED`.
 
 ## Blind spots to state in the report
 

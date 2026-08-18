@@ -24,8 +24,8 @@ does not authorize generating a replacement page.
 
 The first three overview areas and every selected checklist retain the PDF's
 existing tables, columns, labels, checkboxes, comments fields, links, and
-instructional text. Conditional selection may leave a non-applicable existing
-template section collapsed or empty, but must not redesign, reorder, or replace
+instructional text. Do not remove a non-applicable fixed section; populate its
+QA1 rows as `N/A` with the structural reason. Never redesign, reorder, or replace
 the structure.
 
 ## Checklist rules
@@ -40,6 +40,7 @@ the structure.
   substitute an email checklist for push or browser push.
 - For an unsupported check, write `BLOCKED` in the existing validation cell and
   the missing capability/evidence scope in the adjacent comments cell.
-- At the end, embed the rendered content screenshot first and the full
-  journey/campaign configuration screenshot second. If unavailable, retain the
-  headings and write `BLOCKED` with the attempted capability.
+- When dedicated capture and template-safe append/upload capabilities are
+  exposed, embed the rendered content screenshot first and the full
+  journey/campaign configuration screenshot second. Otherwise mark the relevant
+  evidence rows `BLOCKED` and do not perform a generic full-body update.

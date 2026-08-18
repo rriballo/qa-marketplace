@@ -23,21 +23,31 @@ connections:
       - validate_personalization
       - render_preview
       - capture_evidence
+    accepted_runtime_inputs:
+      - journey_or_campaign_id_or_url
+      - supplied_journey_or_campaign_payload
   atlassian:
     provider: atlassian
     endpoint: https://atlassian-public-mcp-ttzmuqtjma-uc.a.run.app/mcp
     required_capabilities:
       - getConfluenceCapabilities
       - getConfluencePage
+      - inspectConfluenceQaTemplate
+      - createConfluenceQaReport
       - duplicateConfluencePage
-      - updateConfluenceTemplateFields
+      - updateConfluenceQaOverviewFields
       - updateConfluenceChecklistRows
+    optional_capabilities:
+      - updateConfluenceTemplateFields
       - updateConfluencePage
     unsupported_by_default:
       - Jira issue read/write
       - Confluence attachment upload
     required_safety:
       - template_preserving_confluence_update
+      - semantic_template_preflight
+      - qa1_only_enforced
+      - qa2_preserved
     default_template_page: https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template
     template_override_input: template_page
     template_format_contract: plugins/adobe-qa/shared/template-format.md

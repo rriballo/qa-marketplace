@@ -3,6 +3,10 @@
 Compare the configured AEP audience with the brief/SRS and return atomic results
 using `shared/qa-result-contract.md`.
 
+When the resolved journey/campaign proves no audience relationship exists,
+return `NA` with that reason for every Audience QA row. An unresolved referenced
+audience is `BLOCKED`, not `NA`.
+
 ## Checks
 
 - Audience label follows taxonomy exactly, including market, country, language,

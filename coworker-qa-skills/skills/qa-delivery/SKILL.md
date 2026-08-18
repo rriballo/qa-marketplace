@@ -3,6 +3,11 @@
 Inspect every delivery/message selected by a Journey or Campaign and compare it
 with the brief, taxonomy, channel guidelines, and content requirements.
 
+Inspect embedded action fields in supplied journey/campaign payloads. Fixed test
+recipient overrides, empty required labels/descriptions, and unresolved content
+references are objective failures when exposed. Missing rendered content or
+expected brief values makes only the corresponding checks `BLOCKED`.
+
 ## Configuration checks
 
 - Label and description

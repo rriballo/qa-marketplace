@@ -15,17 +15,25 @@ installable plugin is under `plugins/adobe-qa`.
 
 ## Entry point
 
-Run `qa-orchestrator` with:
+Run `qa-execute` for an end-to-end QA1. Supply at least one of:
+
+- an Adobe journey/campaign ID or URL resolvable by the connected MCP
+- a complete or partial journey/campaign payload
+
+Optional context:
 
 - `jira_ticket`: Jira issue key or URL
 - `brief_source`: brief, SRS, taxonomy, or linked requirements
-- `adobe_object`: Journey, Campaign, audience, or delivery URL/identifier
+- `adobe_object`: Journey, Campaign, audience, or delivery URL/identifier/payload
 - `qa_type`: `journey`, `campaign`, or `delivery`
 - `template_page`: optional existing Confluence QA template page override; the
   default is the configured `QA - MCP Template` page
 
-The orchestrator creates a Confluence report only after all checks have been
-attempted. It does not update or transition Jira.
+Jira, brief, taxonomy, and `qa_type` are not execution prerequisites. Their
+absence produces `BLOCKED` only for dependent comparisons. The skill creates a
+Confluence report only after every preflight row has been classified, then
+re-reads it to verify QA1 coverage and that QA2 is unchanged. It does not update
+or transition Jira.
 
 ## Conditional sections
 
@@ -33,10 +41,10 @@ The orchestrator resolves the Adobe object and dependencies before selecting
 sections. A journey with email includes Audience (when referenced),
 Journey/Campaign, Email Delivery, and applicable Proof/Preview/Personalization.
 Email plus SMS includes both delivery sections. A journey without an audience
-omits Audience with a recorded reason. Delivery-only runs omit unrelated
-sections. Applicability is tracked in the QA evidence data and does not alter
-the Confluence template structure. The duplicated page ends with Content
-Screenshot and Journey/Campaign Configuration Screenshot sections.
+populates the existing Audience QA rows as `N/A` with the structural reason.
+Applicability is tracked in the QA evidence data and does not alter
+the Confluence template structure. Screenshots are appended only when dedicated
+capture and template-safe upload/append capabilities are exposed.
 The exact checklist order and table rules are defined in
 `plugins/adobe-qa/shared/template-format.md` from the supplied PDF reference.
 
@@ -49,7 +57,8 @@ when there are no unresolved blockers, failures, or blocked checks.
 
 - Adobe CX Coworker Gateway or an entitled AJO MCP: capabilities are discovered at
   runtime and may be read-only or product-limited.
-- Atlassian MCP: Jira and Confluence read/write access for the report only.
+- Hardened Atlassian MCP: scoped Confluence read/write access for the report.
+  Jira and attachment operations are not exposed by the default endpoint.
 
 ## Known limitations
 

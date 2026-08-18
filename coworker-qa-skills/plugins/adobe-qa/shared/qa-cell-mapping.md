@@ -21,6 +21,12 @@ such as `Description`, `Status`, or `Label`. If a row cannot be uniquely
 resolved, do not guess: record the result as `BLOCKED` and explain the mapping
 failure in an existing comments or technical-details area.
 
+Before mapping, call `inspectConfluenceQaTemplate` on the runtime template. Use
+the exact section and `whatToQa` strings returned by that preflight. This is
+required because repeated labels and continuation rows occur in the template.
+If the preflight reports a missing QA1 checkbox/comments pair, stop report
+creation and identify the exact template row that requires correction.
+
 ## Cell Behavior
 
 The template row layout is:
@@ -41,6 +47,10 @@ Where to QA | What to QA | Description | QA1 Check | QA1 Comments | QA2 Check | 
 Do not change QA2 unless a second QA run was explicitly requested. Do not
 replace the row's `Where to QA`, `What to QA`, `Description`, links, or
 instructional text. Do not add a new results table.
+
+The current automation is QA1-only even when a second run is requested. A QA2
+workflow requires a separate, explicitly approved server capability; never
+simulate it with a full-body update.
 
 ## Coverage
 

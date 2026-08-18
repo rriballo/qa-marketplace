@@ -4,6 +4,11 @@ Use this map as an execution contract. Discover the connected tools at runtime,
 then use only tools that are actually exposed. A configured tool that is absent,
 denied, or returns insufficient fields is `BLOCKED`, not `PASS` or `NA`.
 
+A complete journey/campaign payload supplied by the user is valid read-only
+evidence for fields it contains. Tool absence blocks only unavailable fields and
+dependencies; it does not make supplied graph fields inaccessible. Runtime
+re-reads take precedence when newer or authoritative.
+
 ## Adobe CX Gateway baseline
 
 The documented baseline is read-only and entitlement-dependent:
@@ -50,7 +55,16 @@ The hardened `MCP-JJRA` endpoint is scoped to Confluence space
   `template_preserving_confluence_update: true` and
   `arbitrary_template_body_replacement: false`.
 - `getConfluencePage`: read template/page storage body and version.
+- `inspectConfluenceQaTemplate`: required preflight for a new report. It returns
+  recognized Journey, Market, and Audience Overview fields, QA sections,
+  exact checklist row labels, QA1 readiness, and template defects.
+- `createConfluenceQaReport`: preferred atomic report write. Send compact
+  overview field values and QA1 row results. The server validates every mapping
+  before creating the page, updates native Confluence tasks and adjacent QA1
+  Comments, and preserves QA2 unchanged.
 - `duplicateConfluencePage`: duplicate the approved template server-side.
+- `updateConfluenceQaOverviewFields`: semantic overview update for an existing
+  report, matched by section and field label.
 - `updateConfluenceTemplateFields`: preferred QA write; send page ID and
   placeholder/value replacements only. The server fetches the large body,
   applies targeted replacements, validates structure, and writes the new
@@ -73,6 +87,11 @@ Do not pass a 94 KB body through the client when targeted fields are sufficient.
 The MCP does not expand `${file:...}` references inside string parameters. Use
 `updateConfluenceTemplateFields`; if full-body update is unavoidable, pass the
 actual storage-format string to `updateConfluencePage`, never a filesystem path.
+
+For new reports, do not use the legacy `createConfluenceJourneyQaReport` task-ID
+workflow. It cannot express semantic overview fields and QA1 row comments as one
+validated operation. Require capability safety values
+`semantic_template_preflight`, `qa1_only_enforced`, and `qa2_preserved`.
 
 ## Status rules
 
