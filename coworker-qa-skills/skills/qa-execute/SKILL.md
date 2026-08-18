@@ -18,6 +18,9 @@ supplied payload and writes only the governed Confluence report.
 6. Use one atomic `createConfluenceQaReport` call.
 7. Re-read and verify all overview values and QA1 comments, completed QA1 equals
    PASS count, and QA2 is unchanged.
+8. Journey only: if Coworker provides complete `type: "flow"` graph data and the
+   MCP exposes `addConfluenceJourneyDiagram`, call it after report verification
+   and verify the final attachment appendix. Never call it for Campaigns.
 
 Return the report URL, status counts, verification counts, top failures, and
 blocked evidence scopes.

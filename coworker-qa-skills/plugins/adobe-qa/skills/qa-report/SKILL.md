@@ -9,8 +9,9 @@ Use the Atlassian MCP only for the report and its evidence. Read
 `shared/mcp-capability-map.md`, `shared/template-format.md`, and
 `shared/qa-cell-mapping.md` before writing. For an end-to-end run, also read and
 enforce `shared/qa-execution-contract.md`.
-The default hardened Atlassian MCP is Confluence-only: it does not read Jira
-and does not upload attachments. Duplicate the
+The default hardened Atlassian MCP is Confluence-only and does not read Jira. It
+supports one restricted attachment workflow for generated Journey flow diagrams;
+do not treat it as a generic attachment service. Duplicate the
 runtime `template_page`, or the governed default
 `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`,
 in the approved existing space. The duplicated page is the report: do not
@@ -104,7 +105,23 @@ The required section order and channel-specific checklist content are defined in
 `shared/template-format.md`, based on the supplied 12-page PDF. The Confluence
 template's existing table cells are the only result destinations.
 
-When both screenshot capture and a dedicated template-safe upload/append
+## Journey flow diagram
+
+For Journeys only, if Coworker returns a complete structured graph with
+`type: "flow"`, call `addConfluenceJourneyDiagram` after the atomic report has
+been created and verified. Send the report `pageId`, literal
+`objectType: "journey"`, the complete flow object, and an evidence caption. The
+MCP renders the flow to PNG server-side, updates the deterministic
+`journey-configuration-diagram.png` attachment, and manages a final
+`Journey Configuration Diagram` appendix without changing QA tables or QA2.
+
+Re-read the page and verify exactly one managed diagram heading and attachment
+reference. Never send flow JSON to generic `updateConfluencePage`, never upload
+Coworker filesystem references, and never call the diagram tool for a Campaign.
+For Campaign QA, diagram applicability is `NA` and the page remains unchanged.
+
+For other screenshots, when both screenshot capture and a dedicated
+template-safe upload/append
 capability are exposed, append exactly these evidence sections, in this order:
 
 1. `Content Screenshot`

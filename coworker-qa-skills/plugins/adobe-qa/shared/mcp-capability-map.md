@@ -75,11 +75,17 @@ The hardened `MCP-JJRA` endpoint is scoped to Confluence space
 - `updateConfluencePage`: update an existing page only after the server guard
   accepts unchanged structure, replacement of existing placeholder wrappers by
   cell text, and the two final screenshot sections.
+- `addConfluenceJourneyDiagram`: Journey-only idempotent operation. It accepts
+  bounded Coworker `type: "flow"` JSON, renders a PNG server-side, uploads or
+  updates `journey-configuration-diagram.png`, and manages one final Journey
+  diagram appendix while preserving QA tables and QA2. Its schema rejects
+  Campaign requests.
 - Other scoped read/comment/page tools may be used only for evidence needed by
   the report.
 
-This endpoint does **not** expose Jira tools or Confluence attachment tools.
-If screenshots cannot be uploaded, append the required screenshot headings with
+This endpoint does **not** expose Jira tools or generic Confluence attachment
+tools. Its only attachment capability is the dedicated Journey flow renderer.
+If other screenshots cannot be uploaded, append the required screenshot headings with
 `BLOCKED` and state the missing capability. Never use a generic full-body update
 or create a replacement page from Markdown.
 

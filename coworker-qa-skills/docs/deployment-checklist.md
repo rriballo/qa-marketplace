@@ -29,7 +29,7 @@
     sections. Verify that `${file:...}` is not passed as a literal body value.
 13. Verify `getConfluenceCapabilities` exposes `inspectConfluenceQaTemplate`,
     `createConfluenceQaReport`, and safety values `semantic_template_preflight`,
-    `qa1_only_enforced`, and `qa2_preserved`.
+    `qa1_only_enforced`, `qa2_preserved`, and `journey_diagram_only`.
 14. Run template inspection against page `16267575322` and require an empty
     `issues` array. On 2026-08-18, the Journey wait-activity and Custom checks
     rows were repaired with native QA1/QA2 task controls and the live template
@@ -40,6 +40,14 @@
     and unchanged QA2 cells by re-reading the created page.
 16. The 2026-08-18 semantic smoke tests passed for overview values, PASS,
     FAIL, BLOCKED, and N/A QA1 behavior, adjacent comments, and QA2 preservation.
+17. For a Journey test, pass a valid Coworker `type: "flow"` graph to
+    `addConfluenceJourneyDiagram`. Verify one PNG attachment and one final
+    `Journey Configuration Diagram` appendix, then retry and verify no duplicate.
+    Confirm the schema rejects `objectType: "campaign"`.
+18. On 2026-08-18, Cloud Run revision `atlassian-public-mcp-00019-xbs`
+    rendered the supplied 9-node/8-edge Journey flow to an 1800x337 PNG. A retry
+    retained one heading and one attachment reference, Campaign input was
+    rejected, and the disposable page was deleted successfully.
     A full-coverage run also populated all 19 recognized overview fields and all
     58 Delivery Email, Audience, and Journey QA1 rows with zero QA2 changes. The
     disposable pages were deleted after verification.

@@ -53,9 +53,18 @@ governed Confluence QA report.
    row coverage, non-empty adjacent QA1 comments, PASS-to-completed-checkbox
    equality, overview values, and unchanged QA2. If verification fails, report
    the run as incomplete and do not claim success.
+10. Journey only: when the resolved Journey evidence includes Coworker graph
+    output with `type: "flow"` and the Confluence MCP advertises
+    `addConfluenceJourneyDiagram`, call it after report verification with
+    `objectType: "journey"`, the report page ID, and the complete flow object.
+    Re-read the report and verify one final `Journey Configuration Diagram`
+    appendix containing `journey-configuration-diagram.png`. Do not call this tool
+    for Campaigns. A Campaign diagram is `NA`, not `BLOCKED`.
 
 ## Output
 
 Return the Confluence URL, decision, counts for all four statuses, number of QA1
 rows/comments/completed tasks verified, confirmation that QA2 is unchanged, top
 failures, and blocked evidence scopes. Human approval remains required.
+For a Journey flow, also report whether the generated diagram attachment and
+managed appendix were verified.

@@ -38,16 +38,18 @@ connections:
       - updateConfluenceQaOverviewFields
       - updateConfluenceChecklistRows
     optional_capabilities:
+      - addConfluenceJourneyDiagram
       - updateConfluenceTemplateFields
       - updateConfluencePage
     unsupported_by_default:
       - Jira issue read/write
-      - Confluence attachment upload
+      - Generic Confluence attachment upload
     required_safety:
       - template_preserving_confluence_update
       - semantic_template_preflight
       - qa1_only_enforced
       - qa2_preserved
+      - journey_diagram_only
     default_template_page: https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template
     template_override_input: template_page
     template_format_contract: plugins/adobe-qa/shared/template-format.md

@@ -111,6 +111,11 @@ Evaluate these when the corresponding fields are exposed:
    completed QA1 tasks equals the number of `PASS` results; and every QA2 task
    status/comment is byte-equivalent to the source template.
 8. A create response without this verification is not a completed QA run.
+9. For a Journey only, when complete Coworker `type: "flow"` graph data is
+   available and `addConfluenceJourneyDiagram` is exposed, call that dedicated
+   tool after report verification. Re-read the report and verify exactly one
+   managed Journey diagram attachment appendix. Never invoke it for Campaigns;
+   Campaign diagram applicability is `NA`.
 
 Screenshot evidence is optional unless the brief requires it. Append screenshots
 only when both a capture capability and a dedicated template-safe upload/append

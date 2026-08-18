@@ -58,7 +58,8 @@ when there are no unresolved blockers, failures, or blocked checks.
 - Adobe CX Coworker Gateway or an entitled AJO MCP: capabilities are discovered at
   runtime and may be read-only or product-limited.
 - Hardened Atlassian MCP: scoped Confluence read/write access for the report.
-  Jira and attachment operations are not exposed by the default endpoint.
+  Jira and generic attachment operations are not exposed. A dedicated
+  Journey-only tool renders Coworker flow JSON and embeds the PNG safely.
 
 ## Known limitations
 
