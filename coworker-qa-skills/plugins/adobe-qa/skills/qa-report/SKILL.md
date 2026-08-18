@@ -6,7 +6,8 @@ description: Create an evidence-backed Confluence QA report from Adobe QA result
 # Create QA report
 
 Use the Atlassian MCP only for the report and its evidence. Read
-`shared/mcp-capability-map.md` and `shared/template-format.md` before writing.
+`shared/mcp-capability-map.md`, `shared/template-format.md`, and
+`shared/qa-cell-mapping.md` before writing.
 The default hardened Atlassian MCP is Confluence-only: it does not read Jira
 and does not upload attachments. Duplicate the
 runtime `template_page`, or the governed default
@@ -46,6 +47,23 @@ write as `BLOCKED`.
   update the large storage body server-side. Use `updateConfluencePage` only
   for an approved final screenshot appendix or another change that cannot be
   represented as targeted field replacements.
+- For QA results, use the existing checklist rows as the source of truth. For
+  every applicable atomic result, locate the matching section and checklist row
+  using `shared/qa-cell-mapping.md`, then populate the current run's QA1/1st QA
+  checkbox and adjacent Comments cell. Do not append findings below the table.
+- Prefer `updateConfluenceChecklistRows` for QA results. Send one compact row
+  record per check with `section`, `whereToQa` when needed, exact `whatToQa`,
+  `status`, and `comment`. The MCP will match the existing row and populate QA1
+  Check and QA1 Comments server-side. If a row is missing or ambiguous, the
+  tool must fail rather than writing a summary below the table.
+- Send results in bounded batches if the row payload becomes large; never send
+  the full 94 KB storage body just to update checkbox/comment cells.
+- `PASS` means QA1 checkbox `* [x]` plus a pass reason and citation in QA1
+  Comments. `FAIL`, `BLOCKED`, and `NA` mean QA1 checkbox `* [ ]` plus the reason,
+  expected/observed detail where relevant, and citation in QA1 Comments.
+- Do not populate QA2/2nd QA unless the user explicitly requests a second QA
+  run. A summary below the table is optional and cannot substitute for row-level
+  checkbox and comment values.
 
 The required section order and channel-specific checklist content are defined in
 `shared/template-format.md`, based on the supplied 12-page PDF. The Confluence

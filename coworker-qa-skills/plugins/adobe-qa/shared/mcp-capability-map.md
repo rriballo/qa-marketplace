@@ -55,6 +55,9 @@ The hardened `MCP-JJRA` endpoint is scoped to Confluence space
   placeholder/value replacements only. The server fetches the large body,
   applies targeted replacements, validates structure, and writes the new
   version.
+- `updateConfluenceChecklistRows`: preferred checklist write; send compact
+  section/row/status/comment records. The server writes the existing QA1
+  checkbox and adjacent QA1 comments cell in each matched row.
 - `updateConfluencePage`: update an existing page only after the server guard
   accepts unchanged structure, replacement of existing placeholder wrappers by
   cell text, and the two final screenshot sections.

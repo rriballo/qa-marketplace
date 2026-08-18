@@ -28,7 +28,10 @@ section collapsed or empty, but must not redesign, reorder, or replace it.
 Record results in the existing validation and comments cells. Keep the template's
 two QA columns and use `PASS`, `FAIL`, `BLOCKED`, or `N/A`. Unsupported checks are
 `BLOCKED` with the missing capability and evidence scope in the adjacent comments
-cell. Do not add a new results table or status section.
+cell. For the current run, write the result to the QA1/1st QA checkbox and its
+adjacent comments cell. See `shared/qa-cell-mapping.md`. Do not add a new
+results table or status section, and do not place row findings only below the
+table.
 
 At the end, embed the rendered content screenshot first and the full
 journey/campaign configuration screenshot second. If either is unavailable,
