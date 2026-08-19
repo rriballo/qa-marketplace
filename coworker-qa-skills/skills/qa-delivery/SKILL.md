@@ -12,9 +12,16 @@ When the installable plugin exposes the existing AJO Content MCP, follow
 `plugins/adobe-qa/shared/content-template-evidence.md`. Prefer current
 configured-message or Campaign-preview evidence, then an explicit template ID.
 Use exhaustive exact-name template discovery only as source evidence; follow all
-pagination and never auto-select fuzzy or duplicate matches. A name-matched
-stored template cannot prove current Journey/Campaign linkage, post-copy message
-equality, rendering, proof, or delivery-time personalization.
+pagination. If exact lookup fails, a substring query may be selected only when
+exactly one eligible result remains and its returned full name exactly equals a
+known Journey/Campaign/delivery name. Then call the detail tool and inspect the
+returned content. A name-matched stored template cannot prove current
+Journey/Campaign linkage, post-copy message equality, rendering, proof, or
+delivery-time personalization.
+
+For applicable email, template list/detail retrieval and Content QA are mandatory
+when the tools are exposed. Populate every `Delivery QA - Email` row; retrieval
+without inspecting content or rows omitted from QA1 makes the run incomplete.
 
 ## Configuration checks
 

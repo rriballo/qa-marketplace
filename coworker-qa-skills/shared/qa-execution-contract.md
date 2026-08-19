@@ -11,6 +11,8 @@ The installable contract is
    where the connection cannot expose them.
 4. Uses the installable Content Template evidence contract. Name-matched stored
    content is source evidence only, not proof of configured-message linkage.
+   For applicable email, template discovery/detail, source inspection, and every
+   `Delivery QA - Email` QA1 row are mandatory when the tools are exposed.
 5. Applies status order `NA`, `BLOCKED`, `FAIL`, `PASS` independently per row.
    `NA` requires proven structural absence; `PASS` requires observed evidence.
 6. Populates every preflight row, including all Audience QA rows as `NA` when the

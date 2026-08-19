@@ -140,6 +140,13 @@ for every finding. Include a limitations section whenever the Adobe Gateway or
 custom AJO MCP cannot expose a requested check. Do not silently omit blocked
 checks. Do not update Jira fields, comments, or status.
 
+For every applicable email, reject report creation unless the submitted QA1 row
+set covers every exact preflight row in `Delivery QA - Email`. The execution
+evidence must also record Content Template discovery/detail status, selected
+template ID/name and evidence class, or the tool/error that blocked retrieval.
+Do not accept a successful template list/detail call as a substitute for checking
+the returned content and populating all Content QA rows.
+
 Use the orchestrator applicability record to decide which existing template
 regions to populate. Do not create new sections for included areas. A selected
 area must retain all of its `BLOCKED` checks; an omitted area must be recorded

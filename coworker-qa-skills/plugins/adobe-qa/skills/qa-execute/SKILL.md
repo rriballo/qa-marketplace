@@ -34,7 +34,10 @@ governed Confluence QA report.
    For each applicable email, resolve Content evidence using the precedence and
    deterministic discovery rules in `shared/content-template-evidence.md`.
    Record the evidence class; do not present a name-matched source template as
-   the current configured message.
+   the current configured message. When both Content Template tools are exposed,
+   the list and detail calls are mandatory. Announce the name search, permit the
+   documented fuzzy-to-exact match, inspect the returned content, and do not
+   continue directly from detail retrieval to report creation.
 4. Call `inspectConfluenceQaTemplate` before classifying rows. Use the returned
    overview fields, sections, and exact `whatToQa` values as the output schema.
    For a campaign, require an exact Campaign QA section for campaign-core rows;
@@ -44,6 +47,11 @@ governed Confluence QA report.
    `qa-journey-campaign`, `qa-delivery`, and `qa-audience` as applicable. Produce
    exactly one `PASS`, `FAIL`, `BLOCKED`, or `NA` result and one evidence-backed
    comment for every preflight row in the selected report scope.
+   Before report creation, run a Content QA coverage gate for every email: record
+   whether list/detail retrieval was attempted, selected template ID/name and
+   evidence class, number of `Delivery QA - Email` preflight rows, and number of
+   classified rows. The counts must match. A retrieved template with uninspected
+   content or omitted email rows makes the run incomplete.
 6. If no audience is linked, populate every existing Audience QA row as `NA` and
    state that the resolved journey/campaign contains no audience relationship.
    Apply the same rule to absent optional row-level features. Do not omit or leave

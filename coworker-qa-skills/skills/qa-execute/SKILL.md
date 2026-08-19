@@ -15,10 +15,15 @@ supplied payload and writes only the governed Confluence report.
 4. For each email, follow
    `plugins/adobe-qa/shared/content-template-evidence.md`: prefer configured
    content, then explicit template reference, then exhaustive unambiguous exact
-   name matching as source-only evidence.
+   name matching as source-only evidence. If exact lookup fails, permit the
+   controlled substring search only when the one returned template's full name
+   exactly matches a known object name. Call template detail and inspect its
+   content; do not omit Content QA.
 5. Preflight the live template and classify every returned QA1 row.
 6. Populate structurally absent dependencies as `NA`, including every Audience
    QA row when no audience relationship exists.
+   For applicable email, require one result/comment for every preflight
+   `Delivery QA - Email` row before report creation.
 7. Use one atomic `createConfluenceQaReport` call.
 8. Re-read and verify all overview values and QA1 comments, completed QA1 equals
    PASS count, and QA2 is unchanged.

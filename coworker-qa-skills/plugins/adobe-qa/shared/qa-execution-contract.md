@@ -100,14 +100,22 @@ For each applicable email delivery:
 2. If the configured object exposes an exact Content Template ID, re-read that ID
    with `ajo_content_get_template`.
 3. Otherwise perform the exhaustive exact-name discovery in
-   `shared/content-template-evidence.md`, including all pagination. Never select a
-   partial or duplicate match automatically.
+   `shared/content-template-evidence.md`, including all pagination. If exact
+   lookup fails, perform its controlled substring lookup and accept the result
+   only when one returned template remains and its full name exactly matches a
+   known message/delivery, Campaign, or Journey name.
 4. Record the evidence class in every affected QA1 comment. A name-matched source
    may establish only properties directly observed in its stored source; it does
    not establish current Journey/Campaign linkage or post-copy equality.
 5. Inspect normalized `data.qa` plus the preserved raw Adobe response. Block
    unsupported variants, recursive references, asset/link reachability, rendering,
    proof, and delivery-time personalization rather than guessing.
+6. When both Content Template tools are exposed, list and detail retrieval are
+   mandatory for every applicable email. A list result must be followed by
+   `ajo_content_get_template`; a detail result must be followed by actual source
+   inspection and one QA1 result/comment for every `Delivery QA - Email` preflight
+   row. Missing tools or failed retrievals produce row-level `BLOCKED`, never an
+   omitted Content QA phase.
 
 ## Template-to-report workflow
 
@@ -118,8 +126,10 @@ For each applicable email delivery:
    `N/A - <reason>` rather than inventing values.
 4. Classify every returned row in every relevant Journey/Campaign, Delivery, and
    Audience QA section. For a structurally absent dependency such as no audience,
-   populate all rows in that existing section as `NA` with the same precise
-   reason. Do not leave the section blank.
+    populate all rows in that existing section as `NA` with the same precise
+    reason. Do not leave the section blank.
+   For applicable email, reconcile all `Delivery QA - Email` preflight rows with
+   the classified row set and require zero omissions before creating the report.
 5. Use exact section and `whatToQa` labels returned by preflight.
    Never map campaign-core checks into `Journey QA`. A campaign run is incomplete
    when preflight exposes no suitable Campaign QA section.

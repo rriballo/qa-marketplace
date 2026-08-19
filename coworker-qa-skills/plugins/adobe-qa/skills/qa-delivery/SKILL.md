@@ -18,11 +18,16 @@ margins, images and labels, links and UTM parameters, social URLs, mirror page,
 unsubscribe, personalization syntax/fallbacks, and desktop/mobile preview when
 the connection supports it.
 
-For every applicable email, prefer current configured-message or authorized
-Campaign-preview evidence. Otherwise use an explicit configured template ID. If
-none is exposed, run the exhaustive exact-name and pagination workflow in
-`shared/content-template-evidence.md`; never select the first, fuzzy, or duplicate
-result. Re-read the exact selected ID immediately before QA. State
+For every applicable email, Content QA is mandatory when
+`ajo_content_list_templates` and `ajo_content_get_template` are exposed. Tell the
+user that Content Templates are being searched by the resolved object name, call
+the list tool, and then call the detail tool for the one allowed result. Prefer
+current configured-message or authorized Campaign-preview evidence. Otherwise
+use an explicit configured template ID, exact-name lookup, or the controlled
+fuzzy-to-exact workflow in `shared/content-template-evidence.md`. A fuzzy query
+such as `PULL_OPPORTUNITY` is valid when the single returned template's full name
+exactly equals known Journey `JRN_PULL_OPPORTUNITY_POC`. Never select the first or
+an ambiguous result. Re-read the selected ID immediately before QA. State
 `CONFIGURED_MESSAGE`, `EXPLICIT_TEMPLATE_REFERENCE`, or
 `NAME_MATCHED_SOURCE_TEMPLATE` in affected comments.
 
@@ -33,6 +38,10 @@ current copied-message equality, rendering, link reachability, recursive
 fragment/policy content, asset availability, proof, or delivery-time evaluation.
 Mark those assertions `BLOCKED` without stronger evidence. Inspect both normalized
 `data.qa` and raw variants; do not assume the normalized first variant is complete.
+After retrieval, actually inspect subject, HTML/text, headers, CSS, images,
+accessibility attributes, links/UTMs, social links, mirror/unsubscribe markers,
+and personalization tokens. Do not proceed directly to report creation after the
+detail call.
 
 Also inspect delivery/action fields embedded in a supplied journey or campaign
 payload. Cite the action ID and field path. Apply
@@ -49,4 +58,6 @@ working or a preview is correct without evidence. Never send a live proof.
 For reporting, map each result to the exact applicable `Delivery QA - <channel>`
 row returned by `inspectConfluenceQaTemplate`. Produce a separate QA1 status and
 evidence-backed comment for every applicable row, including `BLOCKED` rows.
-Never put the findings only below the table and never write QA2.
+For email, reconcile the submitted row set against every preflight row in
+`Delivery QA - Email`; zero omissions are allowed. Never put the findings only
+below the table and never write QA2.

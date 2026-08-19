@@ -20,6 +20,9 @@ The latter supplies Content Template and audience-definition evidence. Follow
 `shared/content-template-evidence.md`: an exact name match is stored source
 evidence, not proof that a copied Journey/Campaign message currently matches it.
 For QA, keep Content/Decisioning writes and Content user-token fallback disabled.
+For applicable email, Content Template discovery and detail retrieval are
+mandatory when exposed. The skill must inspect the returned source and classify
+every `Delivery QA - Email` QA1 row before creating the report.
 
 The configured Atlassian MCP must be the hardened `MCP-JJRA` deployment with
 template-preserving Confluence updates. An unguarded `updateConfluencePage`

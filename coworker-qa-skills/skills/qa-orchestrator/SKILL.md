@@ -19,8 +19,10 @@ are optional. Missing optional evidence makes dependent rows `BLOCKED`.
    scripts, and linked assets. Record inaccessible relationships as `BLOCKED`.
    For email Content Templates, follow
    `plugins/adobe-qa/shared/content-template-evidence.md`: exhaust exact-name
-   pagination and classify name-only matches as source evidence, never current
-   configured-message linkage.
+   pagination, use its controlled fuzzy-to-exact fallback when needed, retrieve
+   template detail, and classify name-only matches as source evidence, never
+   current configured-message linkage. For applicable email, Content QA and all
+   `Delivery QA - Email` rows are mandatory.
 3. Read `docs/section-selection.md` and create an applicability record from the
    resolved object evidence before running checks. Include one delivery section
    per channel. In the fixed template, populate rows for genuinely absent

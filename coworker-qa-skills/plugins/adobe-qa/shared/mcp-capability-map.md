@@ -56,6 +56,12 @@ Stored content selected by name is `NAME_MATCHED_SOURCE_TEMPLATE`, not current
 configured-message evidence. Never choose the first list result or stop before
 pagination is exhausted.
 
+For an applicable email, if both template tools are exposed, the sequence is
+mandatory: `ajo_content_list_templates` (unless an explicit template ID exists),
+then `ajo_content_get_template`, then source inspection and complete
+`Delivery QA - Email` row classification. The allowed substring search still
+requires one result whose returned full name exactly equals a known object name.
+
 ## Optional custom Adobe MCP
 
 Use these only when the connected server explicitly exposes them:

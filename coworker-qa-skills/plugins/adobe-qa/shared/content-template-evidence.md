@@ -23,6 +23,23 @@ Never describe class 2 or 3 as rendered proof or current configured-message
 content. Include the class, template ID, exact matched name, ETag/request ID when
 returned, and retrieval tool in every material QA1 comment.
 
+## Mandatory email discovery
+
+When email is applicable and both Content Template tools are exposed, this phase
+is mandatory. Do not skip it because current message content, a brief, or a
+preview is missing. Before the list call, tell the user which Journey, Campaign,
+or delivery name is being searched. A normal trace is:
+
+```text
+Let me search for content templates related to this journey by name.
+```
+
+Then call `ajo_content_list_templates`, select an allowed result as described
+below, and call `ajo_content_get_template`. A successful list without the detail
+call is not Content QA. If either call fails, populate the affected QA1 rows as
+`BLOCKED` with the attempted query, tool, and error; do not omit the rows or
+continue as though Content QA passed.
+
 ## Deterministic discovery
 
 1. If the configured object exposes an exact template ID/reference, call
@@ -42,13 +59,44 @@ returned, and retrieval tool in every material QA1 comment.
    non-email, but missing channel metadata cannot be treated as non-email. If
    multiple eligible exact results remain, stop and report all IDs as ambiguous.
    Do not continue to a lower-priority name or silently select the first result.
-5. If all exact searches return no result, an optional `~` search may identify
-   candidates for the report, but it must not auto-select one. Record fuzzy
-   candidate IDs and mark dependent checks `BLOCKED` until an exact template ID
-   is supplied.
-6. Re-read the selected ID with `ajo_content_get_template` immediately before QA.
+5. If exact searches return no result, derive a distinctive substring from the
+   known name, without inventing a different campaign identity, and call
+   `ajo_content_list_templates` with
+   `filters: [{"field":"name","operator":"~","value":"<substring>"}]`.
+   For example, Journey `JRN_PULL_OPPORTUNITY_POC` may use
+   `PULL_OPPORTUNITY`.
+6. A `~` result may be selected only when, after exhausting pagination and
+   deduplicating IDs, exactly one eligible email template remains and its full
+   returned `name` exactly equals one of the known message/delivery, Campaign, or
+   Journey names from step 2. The fuzzy query locates the object; the returned
+   full-name equality validates it. Multiple results, or one result whose full
+   name does not exactly match a known name, remain `BLOCKED` and must not be
+   auto-selected.
+7. Re-read the selected ID with `ajo_content_get_template` immediately before QA.
    Use `data.qa` for normalized fields and retain the raw response for fields or
    variants not normalized by the server.
+
+## Required Content QA
+
+After `ajo_content_get_template` succeeds, inspect the returned normalized and
+raw content before report creation. At minimum:
+
+- inventory subject, HTML, text, headers, channel, template type, source shape,
+  and every raw email variant returned;
+- inspect HTML/CSS for fonts, margins, layout declarations, preheader, images,
+  `alt`/`title`, links, UTM parameters, social URLs, mirror/unsubscribe markers,
+  and personalization tokens/fallback syntax;
+- record exact observed values, missing properties, URLs, and token snippets as
+  evidence without exposing secrets or unnecessary personal data;
+- map every applicable `Delivery QA - Email` row returned by template preflight
+  to `PASS`, `FAIL`, `BLOCKED`, or `NA` with an adjacent QA1 comment.
+
+Source-visible checks must be evaluated; do not leave them `BLOCKED` merely
+because the template is source evidence. Rendering, reachability, delivery-time
+evaluation, linkage, proof, and recursive-content checks remain `BLOCKED` unless
+stronger evidence exists. Content QA is incomplete if the template detail was
+retrieved but its HTML/raw fields were not inspected or any applicable email row
+was omitted.
 
 ## Permitted conclusions
 

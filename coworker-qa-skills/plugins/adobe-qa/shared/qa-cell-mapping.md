@@ -59,3 +59,8 @@ result is `BLOCKED`. Rows that are genuinely non-applicable may remain
 unchecked only when the adjacent comment records `NA` and the reason. A summary
 of findings may exist, but it is supplementary and never replaces the row
 checkbox/comment values.
+
+For every applicable email, `Delivery QA - Email` is also the Content QA coverage
+boundary. Compare its exact preflight row labels with the final submitted row
+labels. Every source-visible content row and every blocked render/proof row must
+be present. Report creation must not start while the difference is non-empty.

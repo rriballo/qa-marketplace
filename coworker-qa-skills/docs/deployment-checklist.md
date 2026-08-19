@@ -12,8 +12,13 @@
    `AJO_CONTENT_ALLOW_USER_TOKEN_FALLBACK=false` for QA.
 4. Test Content discovery with a unique exact template name and paginated list
    response. Verify the selected ID is re-read, its evidence class is recorded,
-   and duplicate or fuzzy results remain `BLOCKED` rather than selecting the
-   first result.
+   and duplicate or non-exact fuzzy results remain `BLOCKED` rather than
+   selecting the first result.
+   Also test Journey `JRN_PULL_OPPORTUNITY_POC` with substring
+   `PULL_OPPORTUNITY`: accept the result only when its returned full name is
+   exactly `JRN_PULL_OPPORTUNITY_POC`, then require
+   `ajo_content_get_template`, source inspection, and complete
+   `Delivery QA - Email` QA1 row coverage.
 5. Bind the Atlassian MCP connection and verify Confluence template duplication and
    page update in a test space.
 6. The default Confluence template is `https://wundertracker.atlassian.net/wiki/spaces/~62fcacec2cbfba0566aca9fb/pages/16267575322/QA+-+MCP+Template`.
@@ -76,3 +81,5 @@ Use the draft/test environment and do not send messages.
 20. Acceptance requires one QA1 result/comment per preflight row, completed QA1
     count equal to PASS count, and byte-equivalent QA2 statuses/comments between
     the source template and created report.
+    For applicable email, acceptance also requires recorded template
+    list/detail status and zero missing `Delivery QA - Email` rows.

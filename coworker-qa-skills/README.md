@@ -72,3 +72,7 @@ inspect every journey policy reference, or validate Adobe Campaign unless the
 connected MCP advertises those capabilities. It never changes Adobe objects.
 Stored templates selected only by exact name are source evidence and cannot prove
 that copied Journey/Campaign message content still matches them.
+For applicable email, `qa-execute` must search/retrieve the Content Template when
+the tools are exposed, inspect the returned source, and populate every
+`Delivery QA - Email` QA1 row. A controlled substring search is accepted only
+when the single result's full name exactly matches a known object name.

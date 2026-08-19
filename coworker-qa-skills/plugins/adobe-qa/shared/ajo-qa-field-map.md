@@ -81,6 +81,12 @@ Name equality is not a linkage field. Applying a template to a message creates a
 copy, so source-template evidence cannot prove that later message edits still
 match it.
 
+When template detail is available, evaluate every applicable source-visible row
+from these fields. Do not omit the Designer/content rows or leave them generically
+`BLOCKED` without inspecting `data.qa.html` and the raw variants. Rendering and
+reachability rows may remain `BLOCKED`, but each still requires its own QA1
+comment.
+
 A fixed literal recipient on a deployed or production-intended action is a
 failure unless explicitly approved. Content/designer rows are `BLOCKED`, not
 `PASS`, when only action metadata is available.

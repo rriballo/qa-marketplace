@@ -42,6 +42,10 @@ skills; it must not weaken that deterministic status or verification contract.
    message-content checks only when the corresponding tools are explicitly
    exposed. A name-matched stored template is source evidence, not proof of the
    configured message.
+   For every applicable email, require the Content Template list/detail sequence
+   and complete `Delivery QA - Email` row classification before report creation.
+   A template lookup is not optional merely because current configured-message
+   linkage cannot be proved.
 6. For each unavailable capability, create a `BLOCKED` result with the missing
    capability and the exact attempted scope. Never turn an unavailable check into
    `PASS` or `N/A`.
