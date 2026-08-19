@@ -55,8 +55,11 @@ when there are no unresolved blockers, failures, or blocked checks.
 
 ## Required connections
 
-- Adobe CX Coworker Gateway or an entitled AJO MCP: capabilities are discovered at
-  runtime and may be read-only or product-limited.
+- Adobe CX Coworker Gateway: entitled campaign, channel, audience, identity, and
+  merge-policy reads are discovered at runtime.
+- Existing AJO App Builder MCP (`AJO_MCP_URL`): read-only Content Template,
+  Campaign resolution/preview, fragment, and audience-definition evidence. Keep
+  Adobe write gates and Content user-token fallback disabled for QA.
 - Hardened Atlassian MCP: scoped Confluence read/write access for the report.
   Jira and generic attachment operations are not exposed. A dedicated
   Journey-only tool renders Coworker flow JSON and embeds the PNG safely.
@@ -67,3 +70,5 @@ The skill reports unsupported or unavailable operations as `BLOCKED`. It does no
 claim to simulate profile eligibility, prove live delivery, render every message,
 inspect every journey policy reference, or validate Adobe Campaign unless the
 connected MCP advertises those capabilities. It never changes Adobe objects.
+Stored templates selected only by exact name are source evidence and cannot prove
+that copied Journey/Campaign message content still matches them.

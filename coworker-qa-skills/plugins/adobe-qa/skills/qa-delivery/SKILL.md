@@ -5,17 +5,34 @@ description: Audit an Adobe Journey Optimizer delivery or message configuration 
 
 # Audit delivery
 
-Read `shared/mcp-capability-map.md` and use only tools actually exposed. Use
+Read `shared/mcp-capability-map.md` and
+`shared/content-template-evidence.md`, and use only tools actually exposed. Use
 `ajo_channel_configuration_list` and `ajo_channel_configuration_get` for
 channel metadata, then re-read the linked campaign/delivery before reporting
 fields. The documented CX Coworker Gateway does not expose message HTML, subject
-lines, personalization tokens, offer content, or rendered proofs. Mark those
-checks `BLOCKED` unless the corresponding custom tool is exposed. Check label,
-description, category,
+lines, personalization tokens, offer content, or rendered proofs. Supplement it
+with the existing AJO MCP when Content Template, Campaign resolution, or Campaign
+preview tools are exposed. Check label, description, category,
 surface, tracking, profile email fields, sender, subject, preheader, fonts,
 margins, images and labels, links and UTM parameters, social URLs, mirror page,
 unsubscribe, personalization syntax/fallbacks, and desktop/mobile preview when
 the connection supports it.
+
+For every applicable email, prefer current configured-message or authorized
+Campaign-preview evidence. Otherwise use an explicit configured template ID. If
+none is exposed, run the exhaustive exact-name and pagination workflow in
+`shared/content-template-evidence.md`; never select the first, fuzzy, or duplicate
+result. Re-read the exact selected ID immediately before QA. State
+`CONFIGURED_MESSAGE`, `EXPLICIT_TEMPLATE_REFERENCE`, or
+`NAME_MATCHED_SOURCE_TEMPLATE` in affected comments.
+
+A stored template can pass/fail objective source-visible properties such as
+subject/content presence, HTML/CSS, image attributes, source URLs/UTMs, required
+tokens, and visible personalization syntax. A name match cannot pass linkage,
+current copied-message equality, rendering, link reachability, recursive
+fragment/policy content, asset availability, proof, or delivery-time evaluation.
+Mark those assertions `BLOCKED` without stronger evidence. Inspect both normalized
+`data.qa` and raw variants; do not assume the normalized first variant is complete.
 
 Also inspect delivery/action fields embedded in a supplied journey or campaign
 payload. Cite the action ID and field path. Apply

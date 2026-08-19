@@ -12,13 +12,17 @@ supplied payload and writes only the governed Confluence report.
    make only the dependent rows `BLOCKED`.
 3. Resolve and re-read accessible Adobe dependencies, while using supplied
    payload fields as evidence when runtime tools do not expose them.
-4. Preflight the live template and classify every returned QA1 row.
-5. Populate structurally absent dependencies as `NA`, including every Audience
+4. For each email, follow
+   `plugins/adobe-qa/shared/content-template-evidence.md`: prefer configured
+   content, then explicit template reference, then exhaustive unambiguous exact
+   name matching as source-only evidence.
+5. Preflight the live template and classify every returned QA1 row.
+6. Populate structurally absent dependencies as `NA`, including every Audience
    QA row when no audience relationship exists.
-6. Use one atomic `createConfluenceQaReport` call.
-7. Re-read and verify all overview values and QA1 comments, completed QA1 equals
+7. Use one atomic `createConfluenceQaReport` call.
+8. Re-read and verify all overview values and QA1 comments, completed QA1 equals
    PASS count, and QA2 is unchanged.
-8. Journey only: if Coworker provides complete `type: "flow"` graph data and the
+9. Journey only: if Coworker provides complete `type: "flow"` graph data and the
    MCP exposes `addConfluenceJourneyDiagram`, call it after report verification
    and verify the final attachment appendix. Never call it for Campaigns.
 

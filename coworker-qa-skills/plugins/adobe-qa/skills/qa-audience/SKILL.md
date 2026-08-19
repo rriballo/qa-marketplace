@@ -13,6 +13,14 @@ never as proof of all production membership. Use
 freshness and activation health. If a required tool or field is absent, return
 `BLOCKED` with the exact attempted scope.
 
+When the existing AJO MCP exposes `ajo_aep_list_audiences` and
+`ajo_aep_get_audience`, prefer an exact audience system ID referenced by the
+Journey/Campaign and re-read it for definition, expression, schema, evaluation,
+governance, and dependency fields. Follow raw list pagination when discovery is
+needed. Never use a same-name audience as proof of linkage, and do not claim these
+tools expose counts, member qualification, identity graph, consent state, or
+activation success.
+
 Follow `shared/qa-execution-contract.md`. If the resolved journey/campaign proves
 that it has no audience, read-audience, segment, or audience-qualification
 relationship, return one `NA` result for every existing Audience QA row with that

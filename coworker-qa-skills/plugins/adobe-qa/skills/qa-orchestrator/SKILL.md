@@ -36,8 +36,12 @@ skills; it must not weaken that deterministic status or verification contract.
    `preview_audience_membership`, `inspect_audience_evaluation_jobs`, and
    `inspect_audience_export_jobs` when exposed. Run campaign checks with
    `ajo_campaign_list` and `ajo_campaign_get`; use channel configuration tools
-   for channel metadata. Run journey-graph and message-content checks only when
-   the custom tools in the capability map are explicitly exposed.
+   for channel metadata. Use the existing AJO MCP audience-definition and
+   Content Template reads according to `shared/mcp-capability-map.md` and
+   `shared/content-template-evidence.md`. Run journey-graph and current
+   message-content checks only when the corresponding tools are explicitly
+   exposed. A name-matched stored template is source evidence, not proof of the
+   configured message.
 6. For each unavailable capability, create a `BLOCKED` result with the missing
    capability and the exact attempted scope. Never turn an unavailable check into
    `PASS` or `N/A`.

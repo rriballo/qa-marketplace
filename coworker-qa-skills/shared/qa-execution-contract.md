@@ -9,12 +9,14 @@ The installable contract is
    Missing evidence blocks only dependent checks.
 3. Re-reads runtime objects and dependencies, then uses supplied payload fields
    where the connection cannot expose them.
-4. Applies status order `NA`, `BLOCKED`, `FAIL`, `PASS` independently per row.
+4. Uses the installable Content Template evidence contract. Name-matched stored
+   content is source evidence only, not proof of configured-message linkage.
+5. Applies status order `NA`, `BLOCKED`, `FAIL`, `PASS` independently per row.
    `NA` requires proven structural absence; `PASS` requires observed evidence.
-5. Populates every preflight row, including all Audience QA rows as `NA` when the
+6. Populates every preflight row, including all Audience QA rows as `NA` when the
    resolved object proves no audience relationship exists.
-6. Creates the report atomically with `createConfluenceQaReport`.
-7. Re-reads the report and verifies overview values, QA1 comments, completed QA1
+7. Creates the report atomically with `createConfluenceQaReport`.
+8. Re-reads the report and verifies overview values, QA1 comments, completed QA1
    count equals PASS count, and QA2 is unchanged.
 
 Use the installable contract as the full source of truth.

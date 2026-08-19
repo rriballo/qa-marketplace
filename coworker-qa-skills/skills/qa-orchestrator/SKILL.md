@@ -17,6 +17,10 @@ are optional. Missing optional evidence makes dependent rows `BLOCKED`.
    waits, conditions, splits, hygiene, and approval requirements.
 2. Resolve the Adobe object and related audience, delivery/message, templates,
    scripts, and linked assets. Record inaccessible relationships as `BLOCKED`.
+   For email Content Templates, follow
+   `plugins/adobe-qa/shared/content-template-evidence.md`: exhaust exact-name
+   pagination and classify name-only matches as source evidence, never current
+   configured-message linkage.
 3. Read `docs/section-selection.md` and create an applicability record from the
    resolved object evidence before running checks. Include one delivery section
    per channel. In the fixed template, populate rows for genuinely absent

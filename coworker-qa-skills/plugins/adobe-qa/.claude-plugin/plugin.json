@@ -1,8 +1,8 @@
 {
   "name": "adobe-qa",
   "displayName": "Adobe Experience QA",
-  "description": "Read-only, evidence-backed QA for Adobe Journey Optimizer and supported campaign assets.",
-  "version": "1.2.0",
+  "description": "Read-only, evidence-backed QA for Adobe Journey Optimizer, audiences, deliveries, and stored content evidence.",
+  "version": "1.3.0",
   "author": {
     "name": "WPP AJO Engineering"
   },

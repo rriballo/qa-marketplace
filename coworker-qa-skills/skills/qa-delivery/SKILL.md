@@ -8,6 +8,14 @@ recipient overrides, empty required labels/descriptions, and unresolved content
 references are objective failures when exposed. Missing rendered content or
 expected brief values makes only the corresponding checks `BLOCKED`.
 
+When the installable plugin exposes the existing AJO Content MCP, follow
+`plugins/adobe-qa/shared/content-template-evidence.md`. Prefer current
+configured-message or Campaign-preview evidence, then an explicit template ID.
+Use exhaustive exact-name template discovery only as source evidence; follow all
+pagination and never auto-select fuzzy or duplicate matches. A name-matched
+stored template cannot prove current Journey/Campaign linkage, post-copy message
+equality, rendering, proof, or delivery-time personalization.
+
 ## Configuration checks
 
 - Label and description

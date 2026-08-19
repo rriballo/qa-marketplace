@@ -87,7 +87,27 @@ Evaluate these when the corresponding fields are exposed:
   re-read it. Empty IDs or unresolved references fail or block according to the
   observed configuration.
 - Content, links, personalization, accessibility, and preview checks remain
-  `BLOCKED` unless content or rendered evidence is actually available.
+  `BLOCKED` unless content or rendered evidence is actually available. When a
+  stored Content Template is available, follow
+  `shared/content-template-evidence.md`: source-visible properties may be checked,
+  but configured-message/linkage/render assertions require stronger evidence.
+
+## Content evidence workflow
+
+For each applicable email delivery:
+
+1. Prefer a current configured-message read or authorized Campaign preview.
+2. If the configured object exposes an exact Content Template ID, re-read that ID
+   with `ajo_content_get_template`.
+3. Otherwise perform the exhaustive exact-name discovery in
+   `shared/content-template-evidence.md`, including all pagination. Never select a
+   partial or duplicate match automatically.
+4. Record the evidence class in every affected QA1 comment. A name-matched source
+   may establish only properties directly observed in its stored source; it does
+   not establish current Journey/Campaign linkage or post-copy equality.
+5. Inspect normalized `data.qa` plus the preserved raw Adobe response. Block
+   unsupported variants, recursive references, asset/link reachability, rendering,
+   proof, and delivery-time personalization rather than guessing.
 
 ## Template-to-report workflow
 

@@ -31,6 +31,31 @@ subject lines, personalization tokens, offers, rendered previews, screenshots,
 live proofs, profile simulation, or write operations. Do not invent replacement
 tool names for these checks.
 
+## Existing AJO Content and Audience MCP
+
+The plugin also configures `adobe-ajo`, the existing App Builder MCP, through
+`AJO_MCP_URL`. Call `ajo_get_capabilities` when exposed and keep all Adobe usage
+read-only. For QA deployments require content and Decisioning writes to remain
+disabled and user-token fallback for Content writes to remain disabled.
+
+| Tool | Use for | Cannot prove by itself |
+|---|---|---|
+| `ajo_content_list_templates` | Exhaustive exact-name discovery of stored templates using raw Adobe pagination | Unique linkage from a matching name |
+| `ajo_content_get_template` | Re-read an exact template ID; inspect normalized `data.qa` and raw template fields | Current copied Journey/Campaign message equality or rendered output |
+| `ajo_journey_resolve_campaigns` | Resolve Journey campaign/message candidates from an exact Journey ID | Complete Journey graph or template association unless an explicit reference is returned |
+| `ajo_campaign_resolve_scope` | Resolve exact Campaign/version/package/message scope | Full content correctness or proof delivery |
+| `ajo_campaign_preview_content` | Adobe-rendered Campaign preview for approved test identities/attributes | All-profile behavior, Journey path execution, proof receipt, or activation |
+| `ajo_content_list_fragments` / `ajo_content_get_fragment` | Inspect explicitly referenced fragment sources | Automatic recursive expansion or delivery-time rendered content |
+| `ajo_content_get_live_fragment` | Inspect the live form of an exact fragment | That a template/message uses that exact live fragment |
+| `ajo_content_get_fragment_publication_status` | Inspect publication status | Successful message rendering |
+| `ajo_aep_list_audiences` | Locate AEP audience definitions with raw pagination | Membership, qualification, counts, or exact linkage by name |
+| `ajo_aep_get_audience` | Re-read an exact audience system ID and inspect returned definition/evaluation/schema fields | Counts, profile membership, consent state, or activation success |
+
+Read `shared/content-template-evidence.md` before using Content Template data.
+Stored content selected by name is `NAME_MATCHED_SOURCE_TEMPLATE`, not current
+configured-message evidence. Never choose the first list result or stop before
+pagination is exhausted.
+
 ## Optional custom Adobe MCP
 
 Use these only when the connected server explicitly exposes them:

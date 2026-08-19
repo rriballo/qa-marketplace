@@ -26,6 +26,31 @@ connections:
     accepted_runtime_inputs:
       - journey_or_campaign_id_or_url
       - supplied_journey_or_campaign_payload
+  adobe_ajo_content:
+    provider: existing-read-only-ajo-app-builder-mcp
+    endpoint_env: AJO_MCP_URL
+    default_endpoint: https://24639-418ceruleanprimate-stage.adobeioruntime.net/api/v1/web/my-mcp-server/mcp
+    discovery:
+      - ajo_get_capabilities
+    required_content_reads:
+      - ajo_content_list_templates
+      - ajo_content_get_template
+    optional_content_reads:
+      - ajo_journey_resolve_campaigns
+      - ajo_campaign_resolve_scope
+      - ajo_campaign_preview_content
+      - ajo_content_list_fragments
+      - ajo_content_get_fragment
+      - ajo_content_get_live_fragment
+      - ajo_content_get_fragment_publication_status
+    audience_reads:
+      - ajo_aep_list_audiences
+      - ajo_aep_get_audience
+    required_safety:
+      - read_only_qa_usage
+      - content_writes_disabled
+      - decisioning_writes_disabled
+      - content_user_token_fallback_disabled
   atlassian:
     provider: atlassian
     endpoint: https://atlassian-public-mcp-ttzmuqtjma-uc.a.run.app/mcp
@@ -56,6 +81,8 @@ connections:
     capability_contract: plugins/adobe-qa/shared/mcp-capability-map.md
 
 write_policy:
+  adobe:
+    mutate: false
   jira:
     update: false
     transition: false

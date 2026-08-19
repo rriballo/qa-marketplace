@@ -13,6 +13,7 @@ Read these contracts before doing anything:
 - `shared/qa-result-contract.md`
 - `shared/qa-cell-mapping.md`
 - `shared/template-format.md`
+- `shared/content-template-evidence.md`
 
 Remain read-only against Adobe and Jira. The only permitted write is the
 governed Confluence QA report.
@@ -30,6 +31,10 @@ governed Confluence QA report.
 3. Build an evidence inventory with exact object IDs and field paths. Determine
    applicable channels and whether audience, waits, splits, variants,
    personalization, and other optional features are actually present.
+   For each applicable email, resolve Content evidence using the precedence and
+   deterministic discovery rules in `shared/content-template-evidence.md`.
+   Record the evidence class; do not present a name-matched source template as
+   the current configured message.
 4. Call `inspectConfluenceQaTemplate` before classifying rows. Use the returned
    overview fields, sections, and exact `whatToQa` values as the output schema.
    For a campaign, require an exact Campaign QA section for campaign-core rows;

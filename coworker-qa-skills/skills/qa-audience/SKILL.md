@@ -27,3 +27,9 @@ audience is `BLOCKED`, not `NA`.
 
 Do not infer population correctness from the label alone. If the audience
 definition or counts cannot be inspected, return `BLOCKED`.
+
+When exposed, use `ajo_aep_get_audience` with the exact referenced system ID for
+definition, expression, schema, evaluation, governance, and dependency evidence.
+Use `ajo_aep_list_audiences` only for paginated discovery. Same-name results do
+not prove linkage, and these tools do not prove counts, qualification, identity
+graph, consent state, or activation.

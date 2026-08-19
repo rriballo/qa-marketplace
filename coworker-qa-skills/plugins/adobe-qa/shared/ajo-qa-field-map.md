@@ -57,6 +57,30 @@ Never present a derivation as a briefed fact.
 | Personalization | expressions plus validation and test-profile preview evidence |
 | Preview | actual desktop/mobile render evidence |
 
+### Stored Content Template fields
+
+When the existing AJO MCP exposes `ajo_content_get_template`, inspect normalized
+`data.qa.templateId`, `name`, `templateType`, `channels`, `subject`, `html`,
+`text`, `headers`, and `sourceShape`, plus the preserved raw response. Apply the
+evidence class from `shared/content-template-evidence.md`:
+
+| Content check | Stored source evidence |
+|---|---|
+| Subject | `data.qa.subject`; source presence/visible syntax only |
+| HTML and text | `data.qa.html`, `data.qa.text`; source structure/content only |
+| Sender/header values | `data.qa.headers` or raw fields only when actually returned |
+| Preheader | explicit raw field or identifiable HTML preheader pattern |
+| Font/margins/layout | HTML/CSS declarations; not rendered appearance |
+| Images/accessibility | parsed source `img` attributes; not asset availability |
+| Links/UTM/social | source URLs and parameters; not reachability or redirects |
+| Mirror/unsubscribe | source token/link presence; not delivery-time rewriting |
+| Personalization | source token presence/syntax visible in content; not evaluation |
+| Variants | raw response; normalized `data.qa` represents only the first recognized email variant |
+
+Name equality is not a linkage field. Applying a template to a message creates a
+copy, so source-template evidence cannot prove that later message edits still
+match it.
+
 A fixed literal recipient on a deployed or production-intended action is a
 failure unless explicitly approved. Content/designer rows are `BLOCKED`, not
 `PASS`, when only action metadata is available.
@@ -69,6 +93,14 @@ include/exclude logic, all/any logic, operators, containers, and counts. If the
 complete graph proves no audience relationship exists, all Audience QA rows are
 `NA`. If a reference exists but cannot be resolved, all unavailable checks are
 `BLOCKED`.
+
+When `ajo_aep_get_audience` is exposed, use an exact referenced audience system
+ID and inspect the raw definition, expression, schema, evaluation, governance,
+and dependency fields Adobe returns. `ajo_aep_list_audiences` may locate an ID,
+but matching names do not prove Journey/Campaign linkage. These tools do not
+provide authoritative counts, member qualification, identity graph, consent
+state, or export/activation success; keep those rows `BLOCKED` unless another
+runtime tool supplies the evidence.
 
 ## Campaign QA
 

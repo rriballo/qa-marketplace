@@ -14,6 +14,13 @@ The Gateway only surfaces entitled tools; missing tools are not a reason to gues
 The exact baseline and optional custom tool mapping is in
 `shared/mcp-capability-map.md`; skills must mark unsupported checks `BLOCKED`.
 
+The plugin configures both Adobe CX Gateway and the existing read-only AJO App
+Builder MCP. Set `AJO_MCP_URL` when the default stage endpoint is not appropriate.
+The latter supplies Content Template and audience-definition evidence. Follow
+`shared/content-template-evidence.md`: an exact name match is stored source
+evidence, not proof that a copied Journey/Campaign message currently matches it.
+For QA, keep Content/Decisioning writes and Content user-token fallback disabled.
+
 The configured Atlassian MCP must be the hardened `MCP-JJRA` deployment with
 template-preserving Confluence updates. An unguarded `updateConfluencePage`
 operation is not safe for QA reports because it can replace the entire template
